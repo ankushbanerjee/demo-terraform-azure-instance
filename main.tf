@@ -20,5 +20,19 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["10.0.0.0/16"]
   location            = "East US"
   resource_group_name = "ankushbanerjee-terraform-resources"
+  tags = {
+    
+      Environment = "Terraform Getting Started"
+      Team        = "Batman"
+    }
+  }
 
+
+
+# Create subnet
+resource "azurerm_subnet" "subnet" {
+  name                 = "Robins"
+  resource_group_name  = "ankushbanerjee-terraform-resources"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefix       = "10.0.1.0/24"
 }
